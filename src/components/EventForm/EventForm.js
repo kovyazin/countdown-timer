@@ -60,6 +60,16 @@ const StyledCalendarIcon = styled(CalendarIcon)`
   }
 `
 
+const WarningMessage = styled.div`
+  position: absolute;
+  bottom: -28px;
+  left: 0;
+  z-index: 1;
+  font-size: 14px;
+  font-weight: 300;
+  color: #dc5858;
+`
+
 const EventForm = () => {
   return (
     <Form>
@@ -68,6 +78,7 @@ const EventForm = () => {
           <StyledCalendarIcon />
         </DateButton>
         <Input placeholder="Write event name that you wait" />
+        <WarningMessage>Event name must not be empty</WarningMessage>
       </InputWrapper>
       <Button type="submit">start</Button>
     </Form>
