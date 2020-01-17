@@ -40,6 +40,7 @@ export const Button = styled.button`
   background: #dc5858;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 `
 
 export const DateButton = styled.button`
