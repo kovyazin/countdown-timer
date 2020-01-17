@@ -1,12 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 
 import CurrentEventTimerItem from './Item/Item'
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
+import { Wrapper } from './Styled'
 
 const CurrentEventTimer = () => {
   return (

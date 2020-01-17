@@ -1,14 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
-import OtherEventTable from './Table/Table'
 
-const Title = styled.div`
-  margin-bottom: 40px;
-  text-align: center;
-  font-size: 36px;
-  font-weight: 300;
-  color: #313131;
-`
+import OtherEventTable from './Table/Table'
+import { Title } from './Styled'
 
 const OtherEvents = () => {
   return (
