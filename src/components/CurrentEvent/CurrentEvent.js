@@ -1,12 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import CurrentEventTimer from './Timer/Timer'
-
-const Wrapper = styled.div`
-  margin: ${props => props.margin};
-`
 
 const Title = styled.div`
   margin-bottom: 40px;
@@ -20,23 +15,15 @@ const Title = styled.div`
   }
 `
 
-const CurrentEvent = ({ margin }) => {
+const CurrentEvent = () => {
   return (
-    <Wrapper margin={margin}>
+    <>
       <Title>
         Before the event <strong>&quot;New Year&quot;</strong> left
       </Title>
       <CurrentEventTimer />
-    </Wrapper>
+    </>
   )
-}
-
-CurrentEvent.defaultProps = {
-  margin: 0
-}
-
-CurrentEvent.propTypes = {
-  margin: PropTypes.string
 }
 
 export default CurrentEvent

@@ -20,13 +20,15 @@ const Input = styled.input`
   padding: 0 26px;
   font-family: inherit;
   font-size: 18px;
-  font-weight: 300;
+  font-weight: 400;
+  color: #000;
   background: #fff;
   border: 1px solid #d0d0d0;
   border-radius: 5px;
 
   &::placeholder {
     color: #606060;
+    font-weight: 300;
   }
 `
 

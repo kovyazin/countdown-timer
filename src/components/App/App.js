@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 import EventForm from '../EventForm/EventForm'
 import CurrentEvent from '../CurrentEvent/CurrentEvent'
+import OtherEvents from '../OtherEvents/OtherEvents'
+import Section from '../UI/Section'
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -14,7 +16,12 @@ const App = () => {
   return (
     <Wrapper>
       <EventForm />
-      <CurrentEvent margin="60px 0 0 0" />
+      <Section>
+        <CurrentEvent />
+      </Section>
+      <Section>
+        <OtherEvents />
+      </Section>
     </Wrapper>
   )
 }
