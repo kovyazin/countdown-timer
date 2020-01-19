@@ -10,7 +10,7 @@ export const Table = styled.table`
   box-shadow: 3px 3px 25px rgba(49, 49, 49, 0.15);
 
   th {
-    padding: 20px;
+    padding: 20px 15px;
     text-align: left;
     font-size: 24px;
     font-weight: 400;
@@ -31,7 +31,6 @@ export const Table = styled.table`
     padding: 15px;
     font-size: 18px;
     font-weight: 300;
-    color: #313131;
 
     &:last-child {
       padding-right: 30px;
@@ -42,4 +41,10 @@ export const Table = styled.table`
       padding-left: 30px;
     }
   }
+`
+
+export const TableRow = styled.tr`
+  cursor: pointer;
+  background: ${props => (props.active ? '#dc5858' : 'none')};
+  color: ${props => (props.active ? '#fff' : '#313131')};
 `

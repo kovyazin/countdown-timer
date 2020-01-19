@@ -1,0 +1,3 @@
+export const ADD_EVENT = 'ADD_EVENT'
+export const SET_CURRENT_EVENT_ID = 'ADD_CURRENT_EVENT_ID'
+export const DELETE_EVENT = 'DELETE_EVENT'
