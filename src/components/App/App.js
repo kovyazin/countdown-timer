@@ -2,8 +2,8 @@ import React from 'react'
 
 import { useSelector } from 'react-redux'
 import EventForm from '../EventForm/EventForm'
-import CurrentEvent from '../CurrentEvent/CurrentEvent'
-import OtherEvents from '../OtherEvents/OtherEvents'
+import Countdown from '../Countdown/Countdown'
+import TableEvents from '../TableEvents/TableEvents'
 import Section from '../UI/Section'
 import { Wrapper } from './Styled'
 
@@ -16,12 +16,12 @@ const App = () => {
       <EventForm />
       {currentEvent && (
         <Section>
-          <CurrentEvent currentEvent={currentEvent} />
+          <Countdown currentEvent={currentEvent} />
         </Section>
       )}
       {!!events.length && (
         <Section>
-          <OtherEvents events={events} />
+          <TableEvents events={events} />
         </Section>
       )}
     </Wrapper>

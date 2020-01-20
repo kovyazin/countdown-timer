@@ -18,6 +18,7 @@ export const WrapperTimer = styled.div`
 `
 
 export const Counter = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,8 +27,6 @@ export const Counter = styled.div`
   height: 200px;
   text-align: center;
   color: #313131;
-  border: 10px solid #dc5858;
-  border-radius: 50%;
 `
 
 export const Number = styled.span`
