@@ -1,16 +1,16 @@
-import { ADD_EVENT, DELETE_EVENT, SET_CURRENT_EVENT_ID } from './types'
+import { ADD_EVENT, DELETE_EVENT, SET_ACTIVE_EVENT } from './types'
 
-export const addEvent = ({ id, name, date }) => ({
+export const addEvent = payload => ({
   type: ADD_EVENT,
-  payload: { id, name, date }
+  payload
 })
 
-export const setCurrentEventId = id => ({
-  type: SET_CURRENT_EVENT_ID,
-  payload: id
+export const setActiveEvent = payload => ({
+  type: SET_ACTIVE_EVENT,
+  payload
 })
 
-export const deleteEvent = id => ({
+export const deleteEvent = payload => ({
   type: DELETE_EVENT,
-  payload: id
+  payload
 })

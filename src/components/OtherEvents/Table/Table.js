@@ -3,22 +3,16 @@ import PropTypes from 'prop-types'
 
 import { Table, TableRow } from './Styled'
 
-const OtherEventsTable = ({
-  events,
-  currentEventId,
-  setCurrentEventId,
-  deleteEvent
-}) => {
+const OtherEventsTable = ({ events, setActiveEvent, deleteEvent }) => {
   const handleSetEvent = id => {
-    setCurrentEventId(id)
+    setActiveEvent(id)
   }
 
-  const handleDelete = (e, id) => {
+  const handleDelete = (e, id, isActive) => {
     e.stopPropagation()
     deleteEvent(id)
-    if (id === currentEventId) {
-      const { id } = events.find(({ id }) => id !== currentEventId) || {}
-      setCurrentEventId(id || null)
+    if (isActive && events.length - 1) {
+      setActiveEvent(events.find(event => event.id !== id).id)
     }
   }
 
@@ -34,19 +28,22 @@ const OtherEventsTable = ({
         </tr>
       </thead>
       <tbody>
-        {events.map(({ id, name }, idx) => {
+        {events.map(({ id, name, isActive }, idx) => {
           return (
             <TableRow
               key={id}
               onClick={() => handleSetEvent(id)}
-              active={id === currentEventId}
+              active={isActive}
             >
               <td>{idx + 1}</td>
               <td>{name}</td>
               <td>June 27, 2020</td>
               <td>25 Days</td>
               <td>
-                <button type="button" onClick={e => handleDelete(e, id)}>
+                <button
+                  type="button"
+                  onClick={e => handleDelete(e, id, isActive)}
+                >
                   Delete
                 </button>
                 <button type="button">Edit</button>
@@ -61,9 +58,8 @@ const OtherEventsTable = ({
 
 OtherEventsTable.propTypes = {
   events: PropTypes.arrayOf(PropTypes.object).isRequired,
-  setCurrentEventId: PropTypes.func.isRequired,
-  deleteEvent: PropTypes.func.isRequired,
-  currentEventId: PropTypes.string.isRequired
+  setActiveEvent: PropTypes.func.isRequired,
+  deleteEvent: PropTypes.func.isRequired
 }
 
 export default OtherEventsTable

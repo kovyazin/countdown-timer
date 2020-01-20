@@ -8,20 +8,22 @@ import Section from '../UI/Section'
 import { Wrapper } from './Styled'
 
 const App = () => {
-  const { currentEventId } = useSelector(state => ({
-    currentEventId: state.currentEventId
-  }))
+  const events = useSelector(state => state.events)
+  const currentEvent = events.find(({ isActive }) => isActive)
+
   return (
     <Wrapper>
       <EventForm />
-      {currentEventId && (
+      {currentEvent && (
         <Section>
-          <CurrentEvent />
+          <CurrentEvent currentEvent={currentEvent} />
         </Section>
       )}
-      <Section>
-        <OtherEvents />
-      </Section>
+      {!!events.length && (
+        <Section>
+          <OtherEvents events={events} />
+        </Section>
+      )}
     </Wrapper>
   )
 }

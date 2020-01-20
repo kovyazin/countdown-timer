@@ -1,29 +1,28 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
 
-import { setCurrentEventId, deleteEvent } from '../../reducers/actions'
+import { setActiveEvent, deleteEvent } from '../../reducers/actions'
 import OtherEventsTable from './Table/Table'
 import { Title } from './Styled'
 
-const OtherEvents = () => {
-  const { events, currentEventId } = useSelector(state => ({
-    events: state.events,
-    currentEventId: state.currentEventId
-  }))
+const OtherEvents = ({ events }) => {
   const dispatch = useDispatch()
 
-  if (!events.length) return null
   return (
     <>
       <Title>All events</Title>
       <OtherEventsTable
         events={events}
-        currentEventId={currentEventId}
-        setCurrentEventId={id => dispatch(setCurrentEventId(id))}
+        setActiveEvent={id => dispatch(setActiveEvent(id))}
         deleteEvent={id => dispatch(deleteEvent(id))}
       />
     </>
   )
+}
+
+OtherEvents.propTypes = {
+  events: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default OtherEvents

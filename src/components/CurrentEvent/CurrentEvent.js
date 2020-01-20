@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { Title, WrapperTimer, Counter, Number, Text } from './Styled'
 
-const CurrentEvent = () => {
+const CurrentEvent = ({ currentEvent }) => {
   const [days, setDays] = useState(0)
   const [hours, setHours] = useState(0)
   const [minutes, setMinutes] = useState(0)
   const [seconds, setSeconds] = useState(0)
-  const { events, currentEventId } = useSelector(state => {
-    return {
-      currentEventId: state.currentEventId,
-      events: state.events
-    }
-  })
-
-  const currentEvent = events.find(({ id }) => id === currentEventId) || {}
 
   const updateTimer = () => {
     const diff = currentEvent.date - Date.now()
@@ -26,12 +18,10 @@ const CurrentEvent = () => {
   }
 
   useEffect(() => {
-    console.log('Use effect!')
     updateTimer()
     const timerId = setInterval(updateTimer, 1000)
-
     return () => clearInterval(timerId)
-  }, [currentEventId, updateTimer])
+  }, [updateTimer])
 
   return (
     <>
@@ -64,6 +54,15 @@ const CurrentEvent = () => {
       </WrapperTimer>
     </>
   )
+}
+
+CurrentEvent.propTypes = {
+  currentEvent: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    date: PropTypes.number,
+    isActive: PropTypes.bool
+  }).isRequired
 }
 
 export default CurrentEvent

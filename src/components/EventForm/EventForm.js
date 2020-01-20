@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import nanoid from 'nanoid'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 import { Form, Input, Button, WarningMessage } from './Styled'
 import './EventForm.scss'
-import { addEvent, setCurrentEventId } from '../../reducers/actions'
+import { addEvent } from '../../reducers/actions'
 
 const EventForm = () => {
   const dispatch = useDispatch()
@@ -21,9 +20,7 @@ const EventForm = () => {
     } else if (date.getTime() <= Date.now()) {
       setError('You cannot select a date less than the current')
     } else {
-      const id = nanoid()
-      dispatch(addEvent({ id, name: inputValue, date }))
-      dispatch(setCurrentEventId(id))
+      dispatch(addEvent({ name: inputValue, date, isActive: true }))
       setError(null)
       setInputValue('')
     }
