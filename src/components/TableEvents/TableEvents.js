@@ -2,7 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 
-import { setActiveEvent, deleteEvent } from '../../reducers/actions'
+import {
+  setActiveEvent,
+  deleteEvent,
+  showEditModal
+} from '../../reducers/actions'
 import { Title, Table, TableRow } from './Styled'
 
 const TableEvents = ({ events }) => {
@@ -18,6 +22,11 @@ const TableEvents = ({ events }) => {
     if (isActive && events.length - 1) {
       dispatch(setActiveEvent(events.find(event => event.id !== id).id))
     }
+  }
+
+  const handleEdit = e => {
+    e.stopPropagation()
+    dispatch(showEditModal())
   }
 
   return (
@@ -52,7 +61,9 @@ const TableEvents = ({ events }) => {
                   >
                     Delete
                   </button>
-                  <button type="button">Edit</button>
+                  <button type="button" onClick={handleEdit}>
+                    Edit
+                  </button>
                 </td>
               </TableRow>
             )

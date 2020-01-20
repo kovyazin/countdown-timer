@@ -1,3 +1,5 @@
 export const ADD_EVENT = 'ADD_EVENT'
 export const SET_ACTIVE_EVENT = 'SET_ACTIVE_EVENT'
 export const DELETE_EVENT = 'DELETE_EVENT'
+export const SHOW_EDIT_MODAL = 'SHOW_EDIT_MODAL'
+export const REMOVE_EDIT_MODAL = 'CLOSE_EDIT_MODAL'
