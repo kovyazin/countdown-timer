@@ -56,3 +56,14 @@ export const TableRow = styled.tr`
   background: ${props => (props.active ? '#dc5858' : 'none')};
   color: ${props => (props.active ? '#fff' : '#313131')};
 `
+
+export const Button = styled.button`
+  margin: 3px;
+  width: 32px;
+  height: 32px;
+  color: ${props => (props.active ? '#fff' : '#dc5858')};
+  background: none;
+  border: 1px solid ${props => (props.active ? '#fff' : '#dc5858')};
+  border-radius: 5px;
+  cursor: pointer;
+`

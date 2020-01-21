@@ -9,11 +9,9 @@ import Section from '../UI/Section'
 import { Wrapper } from './Styled'
 
 const App = () => {
-  const { events, isEdit } = useSelector(({ events, isEdit }) => ({
-    events,
-    isEdit
-  }))
+  const events = useSelector(state => state.events)
   const currentEvent = events.find(({ isActive }) => isActive)
+  const editableEvent = events.find(({ isEdit }) => isEdit)
 
   return (
     <Wrapper>
@@ -28,7 +26,7 @@ const App = () => {
           <TableEvents events={events} />
         </Section>
       )}
-      {isEdit && <ModalEdit />}
+      {editableEvent && <ModalEdit editableEvent={editableEvent} />}
     </Wrapper>
   )
 }

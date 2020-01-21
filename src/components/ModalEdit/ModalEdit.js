@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-
-import { removeEditModal } from '../../reducers/actions'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import { changeEvent, setEditEventMode } from '../../reducers/actions'
 
 const Overlay = styled.div`
   position: fixed;
@@ -44,17 +46,23 @@ const Label = styled.label`
   color: #313131;
 `
 
-const Input = styled.input`
-  display: block;
-  width: 100%;
-  height: 50px;
-  padding: 0 26px;
-  font-family: inherit;
-  font-size: 18px;
-  font-weight: 300;
-  color: #313131;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+const InputWrapper = styled.div`
+  input {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 26px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 300;
+    color: #313131;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .react-datepicker-wrapper {
+    width: 100%;
+  }
 `
 
 const ButtonsGroup = styled.div`
@@ -85,28 +93,55 @@ const ButtonClose = styled(Button)`
   background: none;
 `
 
-const ModalEdit = () => {
+const ModalEdit = ({ editableEvent: { id, name, date } }) => {
   const dispatch = useDispatch()
+  const [nameInputValue, setNameInputValue] = useState(name)
+  const [dateInputValue, setDateInputValue] = useState(date)
+
+  const handleChangeName = e => {
+    setNameInputValue(e.target.value)
+  }
+
+  const handleClose = () => {
+    dispatch(setEditEventMode({ isEdit: false, id }))
+  }
+
+  const handleSave = e => {
+    e.preventDefault()
+    dispatch(changeEvent({ id, name: nameInputValue, date: dateInputValue }))
+    dispatch(setEditEventMode({ isEdit: false, id }))
+  }
 
   return (
     <Overlay>
       <Modal>
         <Title>Edit mode</Title>
-        <form>
+        <form onSubmit={handleSave}>
           <FormGroup>
             <Label>Name event:</Label>
-            <Input value="My mother’s birthday" />
+            <InputWrapper>
+              <input
+                type="text"
+                value={nameInputValue}
+                onChange={handleChangeName}
+              />
+            </InputWrapper>
           </FormGroup>
           <FormGroup>
             <Label>Date event:</Label>
-            <Input value="01/20/2020 10:06 PM" />
+            <InputWrapper>
+              <DatePicker
+                selected={dateInputValue}
+                onChange={date => setDateInputValue(date)}
+                timeInputLabel="Time:"
+                dateFormat="MM/dd/yyyy h:mm aa"
+                showTimeInput
+              />
+            </InputWrapper>
           </FormGroup>
           <ButtonsGroup>
             <ButtonSave type="submit">Save</ButtonSave>
-            <ButtonClose
-              type="button"
-              onClick={() => dispatch(removeEditModal())}
-            >
+            <ButtonClose type="button" onClick={handleClose}>
               Cancel
             </ButtonClose>
           </ButtonsGroup>
@@ -114,6 +149,16 @@ const ModalEdit = () => {
       </Modal>
     </Overlay>
   )
+}
+
+ModalEdit.propTypes = {
+  editableEvent: PropTypes.shape({
+    name: PropTypes.string,
+    id: PropTypes.string,
+    date: PropTypes.object,
+    isActive: PropTypes.bool,
+    isEdit: PropTypes.bool
+  }).isRequired
 }
 
 export default ModalEdit

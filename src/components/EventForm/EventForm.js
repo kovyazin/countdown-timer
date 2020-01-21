@@ -3,8 +3,7 @@ import { useDispatch } from 'react-redux'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-import { Form, Input, Button, WarningMessage } from './Styled'
-import './EventForm.scss'
+import { Form, Input, Button, WarningMessage, StyledDatePicker } from './Styled'
 import { addEvent } from '../../reducers/actions'
 
 const EventForm = () => {
@@ -38,13 +37,15 @@ const EventForm = () => {
         onChange={handleChange}
       />
       {error && <WarningMessage>{error}</WarningMessage>}
-      <DatePicker
-        selected={date}
-        onChange={date => setDate(date)}
-        timeInputLabel="Time:"
-        dateFormat="MM/dd/yyyy h:mm aa"
-        showTimeInput
-      />
+      <StyledDatePicker>
+        <DatePicker
+          selected={date}
+          onChange={date => setDate(date)}
+          timeInputLabel="Time:"
+          dateFormat="MM/dd/yyyy h:mm aa"
+          showTimeInput
+        />
+      </StyledDatePicker>
       <Button type="submit">start</Button>
     </Form>
   )

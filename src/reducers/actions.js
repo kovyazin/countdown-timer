@@ -1,9 +1,9 @@
 import {
   ADD_EVENT,
+  CHANGE_EVENT,
   DELETE_EVENT,
-  REMOVE_EDIT_MODAL,
   SET_ACTIVE_EVENT,
-  SHOW_EDIT_MODAL
+  SET_EDIT_EVENT_MODE
 } from './types'
 
 export const addEvent = payload => ({
@@ -21,12 +21,12 @@ export const deleteEvent = payload => ({
   payload
 })
 
-export const showEditModal = payload => ({
-  type: SHOW_EDIT_MODAL,
+export const setEditEventMode = payload => ({
+  type: SET_EDIT_EVENT_MODE,
   payload
 })
 
-export const removeEditModal = payload => ({
-  type: REMOVE_EDIT_MODAL,
+export const changeEvent = payload => ({
+  type: CHANGE_EVENT,
   payload
 })

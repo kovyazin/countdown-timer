@@ -5,9 +5,9 @@ import { useDispatch } from 'react-redux'
 import {
   setActiveEvent,
   deleteEvent,
-  showEditModal
+  setEditEventMode
 } from '../../reducers/actions'
-import { Title, Table, TableRow } from './Styled'
+import { Title, Table, TableRow, Button } from './Styled'
 
 const TableEvents = ({ events }) => {
   const dispatch = useDispatch()
@@ -24,9 +24,9 @@ const TableEvents = ({ events }) => {
     }
   }
 
-  const handleEdit = e => {
+  const handleEdit = (e, id) => {
     e.stopPropagation()
-    dispatch(showEditModal())
+    dispatch(setEditEventMode({ isEdit: true, id }))
   }
 
   return (
@@ -55,15 +55,20 @@ const TableEvents = ({ events }) => {
                 <td>June 27, 2020</td>
                 <td>25 Days</td>
                 <td>
-                  <button
+                  <Button
+                    type="button"
+                    onClick={e => handleEdit(e, id)}
+                    active={isActive}
+                  >
+                    <i className="fas fa-pen" />
+                  </Button>
+                  <Button
                     type="button"
                     onClick={e => handleDelete(e, id, isActive)}
+                    active={isActive}
                   >
-                    Delete
-                  </button>
-                  <button type="button" onClick={handleEdit}>
-                    Edit
-                  </button>
+                    <i className="fas fa-times" />
+                  </Button>
                 </td>
               </TableRow>
             )

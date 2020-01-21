@@ -1,15 +1,14 @@
 import nanoid from 'nanoid'
 import {
   ADD_EVENT,
+  CHANGE_EVENT,
   DELETE_EVENT,
-  REMOVE_EDIT_MODAL,
   SET_ACTIVE_EVENT,
-  SHOW_EDIT_MODAL
+  SET_EDIT_EVENT_MODE
 } from './types'
 
 const initialState = {
-  events: [],
-  isEdit: false
+  events: []
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -23,7 +22,8 @@ const reducer = (state = initialState, { type, payload }) => {
             id: nanoid(),
             name: payload.name,
             date: payload.date,
-            isActive: payload.isActive
+            isActive: payload.isActive,
+            isEdit: false
           }
         ]
       }
@@ -42,15 +42,23 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         events: state.events.filter(({ id }) => id !== payload)
       }
-    case SHOW_EDIT_MODAL:
+    case SET_EDIT_EVENT_MODE:
       return {
         ...state,
-        isEdit: true
+        events: state.events.map(event => {
+          if (event.id === payload.id)
+            return { ...event, isEdit: payload.isEdit }
+          return event
+        })
       }
-    case REMOVE_EDIT_MODAL:
+    case CHANGE_EVENT:
       return {
         ...state,
-        isEdit: false
+        events: state.events.map(event => {
+          if (event.id === payload.id)
+            return { ...event, name: payload.name, date: payload.date }
+          return event
+        })
       }
     default:
       return state
