@@ -1,68 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Countdown Timer
 
-## Available Scripts
+Данный проект выполнен с использованием библиотеки React. В качестве
+стейт менеджера используется Redux. Для проверков типов свойств
+компонентов используется prop-types. Т.к. в проекте присутствует таймер
+обратного отсчёта, для удобной работы с датами я выбрал moment. Для
+стилизации компонентов я использовал styled-components, т.к. до этого
+ниразу не работал с этой библиотекой и был интересен опыт работы с ней.
 
-In the project directory, you can run:
+## Особенности проекта
 
-### `npm start`
+Данное веб-приложение позволяет быстро узнать сколько осталось времени
+до определённой даты. Вы можете добавлять неограниченное количество
+событий, давать им имена и настраивать дату. Если вдруг вы ошиблись в
+названии или дате, вы всегда можете как отредактировать событие, так
+и полностью удалить его. Вы можете быстро переключаться между событиями
+и моментально видеть таймер обратного отсчёта, отображающий оставшееся
+время. Когда наступает событие, вы видите сообщение, которое об этом
+сообщает. Приложение использует localStorage, благодаря чему когда
+вы перезагружаете страницу прогресс не удаляется. Более чего, вы можете
+закрыть браузер, вернуться на следующий день и увидеть ваши события и
+время до их наступления
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Инструкция по запуску проекта
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Для установки всех зависимостей следует ввести в терминале
+следующие команды:
 
-### `npm test`
+_Для npm_
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npm install` или `npm i`
 
-### `npm run build`
+_Для yarn_
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`yarn` или `yarn install`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Для локального запуска проекта:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+_Для npm_
 
-### `npm run eject`
+`npm start`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+_Для yarn_
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+`yarn start`
