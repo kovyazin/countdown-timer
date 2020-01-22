@@ -3,8 +3,14 @@ import {
   CHANGE_EVENT,
   DELETE_EVENT,
   SET_ACTIVE_EVENT,
-  SET_EDIT_EVENT_MODE
+  SET_EDIT_EVENT_MODE,
+  SET_EVENTS
 } from './types'
+
+export const setEvents = payload => ({
+  type: SET_EVENTS,
+  payload
+})
 
 export const addEvent = payload => ({
   type: ADD_EVENT,

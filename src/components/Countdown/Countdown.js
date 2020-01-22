@@ -1,24 +1,27 @@
+/* Import libraries */
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
 
+/* Import components */
+import CountdownSVGCircle from './SVGCircle/SVGCircle'
+
+/* Import other */
+import { Styled } from './Countdown.styles'
 import { mapNumber } from '../../utils'
-import { Title, WrapperTimer, Counter, Number, Text } from './Styled'
-import SVGCircle from './SVGCircle'
+import { calcDuration } from './utils'
 
 const Countdown = ({ currentEvent }) => {
   const [days, setDays] = useState(null)
   const [hours, setHours] = useState(null)
   const [minutes, setMinutes] = useState(null)
   const [seconds, setSeconds] = useState(null)
+  const diffDays = Math.floor(
+    calcDuration(currentEvent.dateStart, currentEvent.date).asDays()
+  )
 
   const updateCountdown = () => {
-    const eventTime = currentEvent.date
-    const currentTime = Date.now()
-    const diff = eventTime - currentTime
-    const duration = moment.duration(diff, 'milliseconds')
-
-    setDays(duration.days())
+    const duration = calcDuration(Date.now(), currentEvent.date)
+    setDays(Math.floor(duration.asDays()))
     setHours(duration.hours())
     setMinutes(duration.minutes())
     setSeconds(duration.seconds())
@@ -30,14 +33,14 @@ const Countdown = ({ currentEvent }) => {
     return () => clearInterval(timerId)
   }, [currentEvent])
 
-  const daysRadius = mapNumber(days, 30, 0, 0, 360)
+  const daysRadius = mapNumber(days, diffDays + 1, 0, 0, 360)
   const hoursRadius = mapNumber(hours, 24, 0, 0, 360)
   const minutesRadius = mapNumber(minutes, 60, 0, 0, 360)
   const secondsRadius = mapNumber(seconds, 60, 0, 0, 360)
 
   return (
     <>
-      <Title>
+      <Styled.Title>
         Before the event
         <strong>
           &nbsp;&quot;
@@ -45,29 +48,29 @@ const Countdown = ({ currentEvent }) => {
           &quot;&nbsp;
         </strong>
         left
-      </Title>
-      <WrapperTimer>
-        <Counter>
-          <SVGCircle radius={daysRadius} />
-          <Number>{days}</Number>
-          <Text>Days</Text>
-        </Counter>
-        <Counter>
-          <SVGCircle radius={hoursRadius} />
-          <Number>{hours}</Number>
-          <Text>Hours</Text>
-        </Counter>
-        <Counter>
-          <SVGCircle radius={minutesRadius} />
-          <Number>{minutes}</Number>
-          <Text>Minutes</Text>
-        </Counter>
-        <Counter>
-          <SVGCircle radius={secondsRadius} />
-          <Number>{seconds}</Number>
-          <Text>Seconds</Text>
-        </Counter>
-      </WrapperTimer>
+      </Styled.Title>
+      <Styled.WrapperTimer>
+        <Styled.Counter>
+          <CountdownSVGCircle radius={daysRadius} />
+          <Styled.Number>{days}</Styled.Number>
+          <Styled.Text>Days</Styled.Text>
+        </Styled.Counter>
+        <Styled.Counter>
+          <CountdownSVGCircle radius={hoursRadius} />
+          <Styled.Number>{hours}</Styled.Number>
+          <Styled.Text>Hours</Styled.Text>
+        </Styled.Counter>
+        <Styled.Counter>
+          <CountdownSVGCircle radius={minutesRadius} />
+          <Styled.Number>{minutes}</Styled.Number>
+          <Styled.Text>Minutes</Styled.Text>
+        </Styled.Counter>
+        <Styled.Counter>
+          <CountdownSVGCircle radius={secondsRadius} />
+          <Styled.Number>{seconds}</Styled.Number>
+          <Styled.Text>Seconds</Styled.Text>
+        </Styled.Counter>
+      </Styled.WrapperTimer>
     </>
   )
 }
@@ -77,7 +80,8 @@ Countdown.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
     date: PropTypes.number,
-    isActive: PropTypes.bool
+    isActive: PropTypes.bool,
+    dateStart: PropTypes.number
   }).isRequired
 }
 

@@ -4,7 +4,8 @@ import {
   CHANGE_EVENT,
   DELETE_EVENT,
   SET_ACTIVE_EVENT,
-  SET_EDIT_EVENT_MODE
+  SET_EDIT_EVENT_MODE,
+  SET_EVENTS
 } from './types'
 
 const initialState = {
@@ -13,6 +14,11 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case SET_EVENTS:
+      return {
+        ...state,
+        events: [...payload]
+      }
     case ADD_EVENT:
       return {
         ...state,
@@ -21,9 +27,10 @@ const reducer = (state = initialState, { type, payload }) => {
           {
             id: nanoid(),
             name: payload.name,
-            date: payload.date,
+            date: payload.date.getTime(),
             isActive: payload.isActive,
-            isEdit: false
+            isEdit: false,
+            dateStart: payload.dateStart.getTime()
           }
         ]
       }
@@ -56,7 +63,12 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         events: state.events.map(event => {
           if (event.id === payload.id)
-            return { ...event, name: payload.name, date: payload.date }
+            return {
+              ...event,
+              name: payload.name,
+              date: payload.date.getTime(),
+              dateStart: payload.dateStart.getTime()
+            }
           return event
         })
       }

@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
-export const Form = styled.form`
+const Form = styled.form`
   position: relative;
   display: flex;
   width: 100%;
 `
 
-export const Input = styled.input`
+const Input = styled.input`
   flex: 1;
   margin-right: 24px;
   padding: 0 26px;
@@ -24,7 +24,7 @@ export const Input = styled.input`
   }
 `
 
-export const Button = styled.button`
+const Button = styled.button`
   width: 176px;
   height: 60px;
   font-family: inherit;
@@ -37,7 +37,7 @@ export const Button = styled.button`
   cursor: pointer;
 `
 
-export const WarningMessage = styled.div`
+const WarningMessage = styled.div`
   position: absolute;
   bottom: -28px;
   left: 0;
@@ -47,7 +47,7 @@ export const WarningMessage = styled.div`
   color: #dc5858;
 `
 
-export const StyledDatePicker = styled.div`
+const DatePicker = styled.div`
   margin-right: 24px;
 
   .react-datepicker-wrapper {
@@ -70,3 +70,11 @@ export const StyledDatePicker = styled.div`
     }
   }
 `
+
+export const Styled = {
+  Form,
+  Input,
+  Button,
+  WarningMessage,
+  DatePicker
+}

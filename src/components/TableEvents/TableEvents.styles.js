@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Title = styled.div`
+const Title = styled.div`
   margin-bottom: 40px;
   text-align: center;
   font-size: 36px;
@@ -8,7 +8,7 @@ export const Title = styled.div`
   color: #313131;
 `
 
-export const Table = styled.table`
+const Table = styled.table`
   width: 100%;
   margin: 0;
   padding: 0;
@@ -51,19 +51,7 @@ export const Table = styled.table`
   }
 `
 
-export const TableRow = styled.tr`
-  cursor: pointer;
-  background: ${props => (props.active ? '#dc5858' : 'none')};
-  color: ${props => (props.active ? '#fff' : '#313131')};
-`
-
-export const Button = styled.button`
-  margin: 3px;
-  width: 32px;
-  height: 32px;
-  color: ${props => (props.active ? '#fff' : '#dc5858')};
-  background: none;
-  border: 1px solid ${props => (props.active ? '#fff' : '#dc5858')};
-  border-radius: 5px;
-  cursor: pointer;
-`
+export const Styled = {
+  Title,
+  Table
+}

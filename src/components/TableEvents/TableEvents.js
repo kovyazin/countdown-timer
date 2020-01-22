@@ -1,13 +1,18 @@
+/* Import libraries */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 
+/* Import components */
+import TableEventsItem from './Item/Item'
+
+/* Import others */
 import {
   setActiveEvent,
   deleteEvent,
   setEditEventMode
 } from '../../reducers/actions'
-import { Title, Table, TableRow, Button } from './Styled'
+import { Styled } from './TableEvents.styles'
 
 const TableEvents = ({ events }) => {
   const dispatch = useDispatch()
@@ -31,50 +36,31 @@ const TableEvents = ({ events }) => {
 
   return (
     <>
-      <Title>All events</Title>
-      <Table>
+      <Styled.Title>All events</Styled.Title>
+      <Styled.Table>
         <thead>
           <tr>
             <th>#</th>
             <th>Name</th>
             <th>Date</th>
-            <th>Time left</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {events.map(({ id, name, isActive }, idx) => {
+          {events.map((event, idx) => {
             return (
-              <TableRow
-                key={id}
-                onClick={() => handleSetEvent(id)}
-                active={isActive}
-              >
-                <td>{idx + 1}</td>
-                <td>{name}</td>
-                <td>June 27, 2020</td>
-                <td>25 Days</td>
-                <td>
-                  <Button
-                    type="button"
-                    onClick={e => handleEdit(e, id)}
-                    active={isActive}
-                  >
-                    <i className="fas fa-pen" />
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={e => handleDelete(e, id, isActive)}
-                    active={isActive}
-                  >
-                    <i className="fas fa-times" />
-                  </Button>
-                </td>
-              </TableRow>
+              <TableEventsItem
+                key={event.id}
+                event={event}
+                idx={idx}
+                handleDelete={handleDelete}
+                handleSetEvent={handleSetEvent}
+                handleEdit={handleEdit}
+              />
             )
           })}
         </tbody>
-      </Table>
+      </Styled.Table>
     </>
   )
 }

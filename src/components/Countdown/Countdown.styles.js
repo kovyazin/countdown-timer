@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Title = styled.div`
+const Title = styled.div`
   margin-bottom: 40px;
   text-align: center;
   font-size: 36px;
@@ -12,12 +12,12 @@ export const Title = styled.div`
   }
 `
 
-export const WrapperTimer = styled.div`
+const WrapperTimer = styled.div`
   display: flex;
   justify-content: space-between;
 `
 
-export const Counter = styled.div`
+const Counter = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -29,14 +29,22 @@ export const Counter = styled.div`
   color: #313131;
 `
 
-export const Number = styled.span`
+const Number = styled.span`
   font-size: 72px;
   font-weight: 400;
 `
 
-export const Text = styled.span`
+const Text = styled.span`
   margin-top: -10px;
   font-size: 24px;
   font-weight: 300;
   text-transform: uppercase;
 `
+
+export const Styled = {
+  Title,
+  WrapperTimer,
+  Counter,
+  Number,
+  Text
+}

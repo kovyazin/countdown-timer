@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { describeArc } from '../../utils'
+import { describeArc } from '../../../utils'
 
 export const CountdownSVG = styled.svg`
   position: absolute;
@@ -12,7 +12,7 @@ export const CountdownSVG = styled.svg`
   height: 200px;
 `
 
-const SVGCircle = ({ radius }) => (
+const CountdownSVGCircle = ({ radius }) => (
   <CountdownSVG>
     <path
       fill="none"
@@ -23,8 +23,8 @@ const SVGCircle = ({ radius }) => (
   </CountdownSVG>
 )
 
-SVGCircle.propTypes = {
+CountdownSVGCircle.propTypes = {
   radius: PropTypes.number.isRequired
 }
 
-export default SVGCircle
+export default CountdownSVGCircle
