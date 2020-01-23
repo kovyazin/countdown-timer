@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/countdown-timer/static/css/main.af94ffbf.chunk.css",
+    "main.js": "/countdown-timer/static/js/main.56b7ab2f.chunk.js",
+    "main.js.map": "/countdown-timer/static/js/main.56b7ab2f.chunk.js.map",
+    "runtime-main.js": "/countdown-timer/static/js/runtime-main.1ae1725d.js",
+    "runtime-main.js.map": "/countdown-timer/static/js/runtime-main.1ae1725d.js.map",
+    "static/css/2.b90ce945.chunk.css": "/countdown-timer/static/css/2.b90ce945.chunk.css",
+    "static/js/2.3f5c69a3.chunk.js": "/countdown-timer/static/js/2.3f5c69a3.chunk.js",
+    "static/js/2.3f5c69a3.chunk.js.map": "/countdown-timer/static/js/2.3f5c69a3.chunk.js.map",
+    "index.html": "/countdown-timer/index.html",
+    "precache-manifest.4fb434fcda229a2b837752b4b0cf8400.js": "/countdown-timer/precache-manifest.4fb434fcda229a2b837752b4b0cf8400.js",
+    "service-worker.js": "/countdown-timer/service-worker.js",
+    "static/css/2.b90ce945.chunk.css.map": "/countdown-timer/static/css/2.b90ce945.chunk.css.map",
+    "static/css/main.af94ffbf.chunk.css.map": "/countdown-timer/static/css/main.af94ffbf.chunk.css.map",
+    "static/js/2.3f5c69a3.chunk.js.LICENSE": "/countdown-timer/static/js/2.3f5c69a3.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1ae1725d.js",
+    "static/css/2.b90ce945.chunk.css",
+    "static/js/2.3f5c69a3.chunk.js",
+    "static/css/main.af94ffbf.chunk.css",
+    "static/js/main.56b7ab2f.chunk.js"
+  ]
+}
