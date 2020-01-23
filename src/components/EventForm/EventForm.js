@@ -1,15 +1,13 @@
 /* Import libraries */
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 /* Import others */
 import { Styled } from './EventForm.styles'
-import { addEvent } from '../../reducers/actions'
 
-const EventForm = () => {
-  const dispatch = useDispatch()
+const EventForm = ({ addEvent }) => {
   const [inputValue, setInputValue] = useState('')
   const [error, setError] = useState(null)
   const [date, setDate] = useState(new Date())
@@ -21,14 +19,12 @@ const EventForm = () => {
     } else if (date.getTime() <= Date.now()) {
       setError('You cannot select a date less than the current')
     } else {
-      dispatch(
-        addEvent({
-          name: inputValue,
-          date,
-          isActive: true,
-          dateStart: new Date()
-        })
-      )
+      addEvent({
+        name: inputValue,
+        date,
+        isActive: true,
+        dateStart: new Date()
+      })
       setError(null)
       setInputValue('')
     }
@@ -58,6 +54,10 @@ const EventForm = () => {
       <Styled.Button type="submit">start</Styled.Button>
     </Styled.Form>
   )
+}
+
+EventForm.propTypes = {
+  addEvent: PropTypes.func.isRequired
 }
 
 export default EventForm

@@ -1,16 +1,17 @@
 /* Import libraries */
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useDispatch } from 'react-redux'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 /* Import others */
 import { Styled } from './ModalEdit.styles'
-import { changeEvent, setEditEventMode } from '../../reducers/actions'
 
-const ModalEdit = ({ editableEvent: { id, name, date } }) => {
-  const dispatch = useDispatch()
+const ModalEdit = ({
+  setEditEventMode,
+  changeEvent,
+  editableEvent: { id, name, date }
+}) => {
   const [nameInputValue, setNameInputValue] = useState(name)
   const [dateInputValue, setDateInputValue] = useState(new Date(date))
 
@@ -19,20 +20,18 @@ const ModalEdit = ({ editableEvent: { id, name, date } }) => {
   }
 
   const handleClose = () => {
-    dispatch(setEditEventMode({ isEdit: false, id }))
+    setEditEventMode({ isEdit: false, id })
   }
 
   const handleSave = e => {
     e.preventDefault()
-    dispatch(
-      changeEvent({
-        id,
-        name: nameInputValue,
-        date: dateInputValue,
-        dateStart: new Date()
-      })
-    )
-    dispatch(setEditEventMode({ isEdit: false, id }))
+    changeEvent({
+      id,
+      name: nameInputValue,
+      date: dateInputValue,
+      dateStart: new Date()
+    })
+    setEditEventMode({ isEdit: false, id })
   }
 
   return (
@@ -79,7 +78,9 @@ ModalEdit.propTypes = {
     date: PropTypes.number,
     isActive: PropTypes.bool,
     isEdit: PropTypes.bool
-  }).isRequired
+  }).isRequired,
+  changeEvent: PropTypes.func.isRequired,
+  setEditEventMode: PropTypes.func.isRequired
 }
 
 export default ModalEdit

@@ -7,8 +7,7 @@ import CountdownSVGCircle from './SVGCircle/SVGCircle'
 
 /* Import other */
 import { Styled } from './Countdown.styles'
-import { mapNumber } from '../../utils'
-import { calcDuration } from './utils'
+import { calcDuration, mapNumber } from './utils'
 
 const Countdown = ({ currentEvent }) => {
   const [days, setDays] = useState(null)
@@ -21,6 +20,7 @@ const Countdown = ({ currentEvent }) => {
 
   const updateCountdown = () => {
     const duration = calcDuration(Date.now(), currentEvent.date)
+
     setDays(Math.floor(duration.asDays()))
     setHours(duration.hours())
     setMinutes(duration.minutes())

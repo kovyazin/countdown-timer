@@ -1,54 +1,68 @@
 /* Import libraries */
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 /* Import components */
-import EventForm from '../EventForm/EventForm'
 import Countdown from '../Countdown/Countdown'
-import TableEvents from '../TableEvents/TableEvents'
-import ModalEdit from '../ModalEdit/ModalEdit'
+import TableEventsContainer from '../../containers/TableEventsContainer'
+import ModalEditContainer from '../../containers/ModalEditContainer'
+import EventFormContainer from '../../containers/EventFormContainer'
+import MessageContainer from '../../containers/MessageContainer'
 import Section from '../UI/Section'
 
 /* Import others */
-import { setEvents } from '../../reducers/actions'
+import { setEvents, setMessages } from '../../reducers/actions'
 import { Styled } from './App.styles'
 
-const App = () => {
-  const dispatch = useDispatch()
-  const events = useSelector(state => state.events)
+const App = ({ events, messages, setEvents, setMessages }) => {
   const currentEvent = events.find(({ isActive }) => isActive)
   const editableEvent = events.find(({ isEdit }) => isEdit)
 
   useEffect(() => {
     const eventsStorage = localStorage.getItem('events')
-    if (eventsStorage) {
-      dispatch(setEvents(JSON.parse(eventsStorage)))
-    }
+    const messagesStorage = localStorage.getItem('messages')
+    if (eventsStorage) setEvents(JSON.parse(eventsStorage))
+    if (messagesStorage) setMessages(JSON.parse(messagesStorage))
   }, [])
 
   useEffect(() => {
     localStorage.setItem('events', JSON.stringify(events))
   }, [events])
 
+  useEffect(() => {
+    localStorage.setItem('messages', JSON.stringify(messages))
+  }, [messages])
+
   return (
     <Styled.Wrapper>
-      <EventForm />
+      {!!messages.length && <MessageContainer messages={messages} />}
+      <EventFormContainer />
       {!events.length && (
         <Styled.Message>You are not waiting for a single event</Styled.Message>
       )}
-      {currentEvent && (
-        <Section>
-          <Countdown currentEvent={currentEvent} />
-        </Section>
-      )}
       {!!events.length && (
-        <Section>
-          <TableEvents events={events} />
-        </Section>
+        <>
+          <Section>
+            <Countdown currentEvent={currentEvent} />
+          </Section>
+          <Section>
+            <TableEventsContainer />
+          </Section>
+        </>
       )}
-      {editableEvent && <ModalEdit editableEvent={editableEvent} />}
+      {editableEvent && <ModalEditContainer editableEvent={editableEvent} />}
     </Styled.Wrapper>
   )
 }
 
-export default App
+App.propTypes = {
+  events: PropTypes.arrayOf(PropTypes.object).isRequired,
+  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setEvents: PropTypes.func.isRequired,
+  setMessages: PropTypes.func.isRequired
+}
+
+const mapStateToProps = ({ events, messages }) => ({ events, messages })
+
+export default connect(mapStateToProps, { setEvents, setMessages })(App)

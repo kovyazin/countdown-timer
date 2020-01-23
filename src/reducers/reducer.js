@@ -1,15 +1,19 @@
 import nanoid from 'nanoid'
 import {
   ADD_EVENT,
+  ADD_MESSAGE,
   CHANGE_EVENT,
   DELETE_EVENT,
+  DELETE_MESSAGE,
   SET_ACTIVE_EVENT,
   SET_EDIT_EVENT_MODE,
-  SET_EVENTS
+  SET_EVENTS,
+  SET_MESSAGES
 } from './types'
 
 const initialState = {
-  events: []
+  events: [],
+  messages: []
 }
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -71,6 +75,24 @@ const reducer = (state = initialState, { type, payload }) => {
             }
           return event
         })
+      }
+    case SET_MESSAGES:
+      return {
+        ...state,
+        messages: [...payload]
+      }
+    case ADD_MESSAGE:
+      return {
+        ...state,
+        messages: [
+          ...state.messages,
+          { id: payload.id, name: payload.name, date: payload.date }
+        ]
+      }
+    case DELETE_MESSAGE:
+      return {
+        ...state,
+        messages: state.messages.filter(({ id }) => id !== payload)
       }
     default:
       return state
