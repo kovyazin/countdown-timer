@@ -1,4 +1,4 @@
-# Countdown Timer
+# Countdown Timer [Demo](https://kovyazin.github.io/countdown-timer/)
 
 Данный проект выполнен с использованием библиотеки React. В качестве
 стейт менеджера используется Redux. Для проверков типов свойств
